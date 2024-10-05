@@ -1,47 +1,48 @@
 import { NextResponse } from 'next/server';
-import { neon } from '@neondatabase/serverless';
+import { neon } from "@neondatabase/serverless";
 
 export async function POST(request: Request) {
     const db = neon(process.env.DATABASE_URL as string); 
-
     try {
+
         const { 
-            name, address, contact, model, socket, chipset, powerConsumption, memorySupport, 
-            pcieVersion, imageURL, rest
+            user_name, address, contact, model_name, socket_type, chipset, tdp, ddr, 
+            pcie, image, rest
         } = await request.json();
 
         // SQL query to insert data into the CPU table
         const query = `
             INSERT INTO CPU 
-            (user_name, address, contact, model_name, socket_type, chipset, TDP, DDR, PCIe, image, rest) 
-            VALUES 
-            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) 
+            (user_name, address, contact, model_name, socket_type, chipset, tdp, ddr, 
+            pcie, image, rest)
+            VALUES (${"'" + user_name + "'"}, ${"'" + address+"'"}, ${"'"+contact+"'"}, ${"'"+model_name+"'"}, ${"'"+socket_type+"'"}, ${"'"+chipset+"'"}, ${"'"+tdp+"'"}, ${"'"+ddr+"'"}, ${"'"+pcie+"'"}, ${"'"+image+"'"}, ${"'"+rest+"'"}) 
             RETURNING *;
         `;
-
+        console.log("checkpoint 3")
         // Map the extracted variables to the corresponding columns
         const values = [
-            name, 
+            user_name, 
             address, 
             contact || null,
-            model || null, 
-            socket || null, 
+            model_name || null, 
+            socket_type || null, 
             chipset || null, 
-            powerConsumption || null, 
-            memorySupport || null, 
-            pcieVersion || null, 
-            imageURL || null, 
+            tdp || null, 
+            ddr || null, 
+            pcie || null, 
+            image || null,
             rest || null
         ];
-
+        console.log("checkpoint 4");
         // Execute the query using Neon
-        const result = await db`${query}`;
-        Console.log(result)
+        const result = await db(query);
+        console.log(result);
 
         // Return the inserted data to the frontend
         return NextResponse.json({ success: true, result});
     } catch (error) {
-        console.error('Error inserting CPU:', error);
-        return NextResponse.json({ success: false, message: 'shit went wrong'}, { status: 500 });
+        console.error('Error inserting MB:', error);
+        return NextResponse.json({ success: false, message: 'shit went rlly wrong'}, { status: 500 });
     }
 }
+

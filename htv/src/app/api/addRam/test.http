@@ -1,0 +1,16 @@
+POST http://localhost:3000/api/addRam HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_name": "John",
+    "address": "123 Main St",
+    "contact": "john.doe@example.com",
+    "model_name": "Intel Core i9",
+    "speed": "LGA 1200",
+    "capacity": "Z490",
+    "num_channels": "LGA 1200",
+    "ddr": "http://example.com/image.jpg",
+    "description": "hello world",
+    "image": "skill issue.png",
+    "rest": "Additional info"
+}

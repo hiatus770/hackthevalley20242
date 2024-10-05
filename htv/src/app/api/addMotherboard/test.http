@@ -2,8 +2,8 @@ POST http://localhost:3000/api/addMotherboard HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_name": "John",
-    "address": "123 Main St",
+    "user_name": "Bob",
+    "address": "LOL St",
     "contact": "john.doe@example.com",
     "model_name": "Intel Core i9",
     "socket_type": "LGA 1200",

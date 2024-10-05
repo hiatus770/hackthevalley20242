@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/createRequest
+Content-Type: application/json
+
+{
+  "UserId": 1,
+  "Specs": "good pc",
+  "Reason": "its fun",
+  "Budget": 4
+}

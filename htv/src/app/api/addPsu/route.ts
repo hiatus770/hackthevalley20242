@@ -2,21 +2,17 @@ import { NextResponse } from 'next/server';
 import { neon } from "@neondatabase/serverless";
 
 export async function POST(request: Request) {
-    console.log("checkpoint 0")
     const db = neon(process.env.DATABASE_URL as string); 
     try {
-        console.log("checkpoint 1")
-        const { 
-            user_name, address, contact, model_name, socket_type, chipset, ddr, pcie, 
-            form_factor, power_connect, description, image, rest
+        const{ 
+            user_name, address, contact, model_name, wattage, efficiency, power_connect, form_factor, description, image, rest
         } = await request.json();
-        console.log("checkpoint 2")
+
         // SQL query to insert data into the CPU table
         const query = `
-            INSERT INTO MOTHERBOARD 
-            (user_name, address, contact, model_name, socket_type, chipset, ddr, pcie, 
-            form_factor, power_connect, description, image, rest)
-            VALUES (${"'" + user_name + "'"}, ${"'" + address+"'"}, ${"'"+contact+"'"}, ${"'"+model_name+"'"}, ${"'"+socket_type+"'"}, ${"'"+chipset+"'"}, ${"'"+ddr+"'"}, ${"'"+pcie+"'"}, ${"'"+form_factor+"'"}, ${"'"+power_connect+"'"}, ${"'"+description+"'"}, ${"'"+image+"'"}, ${"'"+rest+"'"}) 
+            INSERT INTO PSU 
+            (user_name, address, contact, model_name, wattage, efficiency, power_connect, form_factor, description, image, rest)
+            VALUES (${"'" + user_name + "'"}, ${"'" + address+"'"}, ${"'"+contact+"'"}, ${"'"+model_name+"'"}, ${"'"+wattage+"'"}, ${"'"+efficiency+"'"}, ${"'"+power_connect+"'"}, ${"'"+form_factor+"'"}, ${"'"+description+"'"}, ${"'"+image+"'"}, ${"'"+rest+"'"}) 
             RETURNING *;
         `;
         console.log("checkpoint 3")
@@ -26,12 +22,10 @@ export async function POST(request: Request) {
             address, 
             contact || null,
             model_name || null, 
-            socket_type || null, 
-            chipset || null, 
-            ddr || null, 
-            pcie || null, 
-            form_factor || null, 
+            wattage || null, 
+            efficiency || null, 
             power_connect || null, 
+            form_factor || null, 
             description || null,
             image || null,
             rest || null

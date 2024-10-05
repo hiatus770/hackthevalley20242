@@ -6,24 +6,22 @@ export async function POST (request: Request) {
 
     try {
         // Get the ID from the request URL
-        const { id, item } =  await request.json();
+        const { UserId, Specs, Reason, Budget } =  await request.json();
+        //console.log(user_id, specs, reason, budget);
         
-        if (!id) {
+        if (!UserId) {
             return NextResponse.json({ success: false, message: 'ID is required' }, { status: 400 });
         }
 
         // SQL query to delete a row from the CPU table
         const query = `
-            DELETE FROM ${item} 
-            WHERE id = ${id}
+            INSERT INTO REQUESTS (user_id, specs, reason, budget)
+            VALUES (${UserId}, ${"'" + Specs + "'"}, ${"'" + Reason + "'"}, ${Budget});
         `;
 
-        const result = await db(query);
+        console.log(query);
 
-        // Check if any rows were deleted
-        if (result.rowCount === 0) {
-            return NextResponse.json({ success: false, message: 'No row found with the given ID' }, { status: 404 });
-        }
+        const result = await db(query);
 
         // Return success message
         return NextResponse.json({ success: true, data: result }); // Return the deleted row if you used RETURNING
