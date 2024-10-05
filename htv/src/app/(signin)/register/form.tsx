@@ -56,23 +56,10 @@ export default function Form() {
     const defaultTheme = createTheme();
 
     return (
-        <Container component="main" maxWidth="sm" sx={{ minHeight: '100vh', backgroundColor: "background.paper", }}>
-            <CssBaseline />
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: "center",
-                    minHeight: '90vh'
-                }}
-            >
-                <Typography component="h1" variant="h5">
-                    Register new user to Roommate Rumble
-                </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-
-
+        <div style={{ backgroundColor: "#d4d4d4"}}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <div style={{ width: "50vh", height: "70vh"}}>
+                    <h1 style={{ textAlign: 'center', color: "black", fontSize: "50px", marginBottom: "30px"}}>Sign Up for Bit by Bit</h1>
 
                     <TextField
                         required
@@ -82,7 +69,6 @@ export default function Form() {
                         name="email"
                         autoComplete="email"
                     />
-
 
                     <TextField
                         required
@@ -109,12 +95,12 @@ export default function Form() {
                         required
                         fullWidth
                         id="phone"
-                        label="Phone nuber"
+                        label="Phone number"
                         name="phone"
                         autoComplete="Phone number"
                     />
 
-                    <TextField 
+                    <TextField
                         margin="normal"
                         required
                         fullWidth
@@ -134,15 +120,15 @@ export default function Form() {
                     </Button>
 
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%" }}>
-                        <Typography variant="body2" marginRight={1}>Have an account already?</Typography>
+                        <Typography variant="body2" marginRight={1}><a style={{color: "black"}}>Have an account already?</a></Typography>
                         <Link href="/login" variant="body2">
                             Login
                         </Link>
                     </div>
+                </div>
+            </div>
 
-                </Box>
-            </Box>
-        </Container>
+        </div>
     );
 
 }
