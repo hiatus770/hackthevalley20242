@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 /* inter :)  */
+@value primary: #1c3dc9;
+@value primaryColor: black;
+@value darkPrimaryColor: #31bcb1;
+@value bg: #d4d4d4;
+@value secondaryColor: #08a0ff;
 
 /* body {
     font-family: 'Inter', sans-serif;
@@ -7,61 +12,58 @@
     background-color: #f9f9f9; 
 } */
 
-.navbar {
-    display: flex;
-    align-items: center;         
-    justify-content: space-between; 
-    padding: 20px 40px;         
-    background-color: white;    
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.bigContainer {
+    background-color: bg;
 }
+
 
 .logo {
-    width: 200px;
-    height: 200px;
-    /* something              */
+    width: 100px;
+    height: 100px;
 }
 
-.titleContainer{
-    background: #d4d4d4;
-}
-
-.title {
-    font-size: 120px;            
-    font-weight: bold;  
-    margin: 20px 0;         
-    color: black;               
-}
-.titleContainer {
+/* Header Container Styles */
+.headerContainer {
+    background-color: bg;
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-/* for container */
-.menu {
+/* Title Styles */
+.title {
+    font-size: 120px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Navbar Styles */
+.navbar {
     display: flex;
     justify-content: center;
-    list-style: none;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: bg;
 }
 
-/* items in menu */
 .menuItems {
-    list-style: none;       
-    display: flex;               
-    flex-direction: row;      
-    align-items: center;         
-    margin-left: 50px;                 
-    padding: 0;     
-    background-color: white;
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menuItems li {
-    margin-left: 20px;          
+    margin-left: 20px;
 }
 
 .menuItems a {
-    font-size: 24px;            
-    color: black;              
-    text-decoration: none;      
-    font-weight: 500;          
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+}
+
+.menuItems a:hover {
+    color: #0070f3;
 }

@@ -8,21 +8,19 @@ import styles from "../styles/home.module.css";
 import logo from "../logo.png";
 
 export default function Home() {
-
   return (
-    <>
+    <div className={styles.bigContainer}>
 
-      <img className={styles.logo} src={logo.src} alt="logo" />
+      {/* title container */}
+      <div className={styles.headerContainer}>
+        <img className={styles.logo} src={logo.src} alt="logo" />
+        <h1 className={styles.title}>Bit by Bit</h1>
+      </div>
 
-      {/* /*             
-            <div className={styles.titleContainer}>
-              <a className={styles.title} href="/">Bit by Bit</a>
-            </div>  */}
-
-      <div className={styles.titleContainer}> <h1 className={styles.title}>Bit by Bit</h1> </div>
-
+      {/* navbar */}
       < nav className={styles.navbar} >
         <ul className={styles.menuItems}>
+
           <li> <a href="/about" >About</a> </li>
           <li> <a href="/admin" >Admin</a> </li>
           <li> <a href="/upload" >Upload</a> </li>
@@ -30,9 +28,7 @@ export default function Home() {
         </ul>
       </nav>
 
-
       <p>Description</p>
-    </>
+    </div>
   );
-
 }
