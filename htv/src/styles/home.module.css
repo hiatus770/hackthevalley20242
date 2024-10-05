@@ -1,25 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-/* inter :)  */
-@value primary: #1c3dc9;
-@value primaryColor: black;
-@value darkPrimaryColor: #31bcb1;
-@value bg: #d4d4d4;
-@value secondaryColor: #08a0ff;
 
-/* body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    background-color: #f9f9f9; 
-} */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+
+@value bg: white;
+@value myblue: #0070f3;
+/* can use this for nav bar (not home page) transform: translateY(-5px); */
 
 .bigContainer {
     background-color: bg;
-}
-
-
-.logo {
-    width: 100px;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 /* Header Container Styles */
@@ -28,13 +21,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
 }
 
 /* Title Styles */
 .title {
+    font-family: 'Ubuntu Mono', monospace;
+    /* font-style: italic; */
     font-size: 120px;
     font-weight: bold;
+    color: black;
+}
+
+.desc {
+    margin-bottom: 80px;
+    font-family: 'inter', sans-serif;
+    font-size: 16px;
+    font-style: italic;
     color: black;
 }
 
@@ -45,6 +47,19 @@
     align-items: center;
     padding: 20px 40px;
     background-color: bg;
+}
+
+.login {
+    list-style-type: none;
+    margin-top: 80px;
+    font-family: 'inter', sans-serif;
+    font-size: 20px;
+    color: black;
+    text-decoration: underline;
+
+    &:hover {
+        color: myblue;
+    }
 }
 
 .menuItems {
@@ -59,11 +74,33 @@
 }
 
 .menuItems a {
+    font-family: 'inter', sans-serif;
     font-size: 24px;
     color: black;
     text-decoration: none;
+
+    &:hover {
+        color: myblue;
+    }
 }
 
-.menuItems a:hover {
-    color: #0070f3;
+/* animation for logo */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: (translateY(0));
+        /*start and end at same pos*/
+    }
+
+    50% {
+        transform: (translateY(-5px));
+    }
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 40px;
+    animation: bounce ease-in-out infinite;
 }

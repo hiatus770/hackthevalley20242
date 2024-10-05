@@ -17,18 +17,19 @@ export default function Home() {
         <h1 className={styles.title}>Bit by Bit</h1>
       </div>
 
+      {/* <p className={styles.desc}>Turning E-waste into E-opportunities NO</p> */}
+
       {/* navbar */}
       < nav className={styles.navbar} >
         <ul className={styles.menuItems}>
-
           <li> <a href="/about" >About</a> </li>
-          <li> <a href="/admin" >Admin</a> </li>
           <li> <a href="/upload" >Upload</a> </li>
           <li> <a href="/request" >Request</a> </li>
         </ul>
       </nav>
 
-      <p>Description</p>
+      <li className={styles.login}> <a href="/admin" >Login</a> </li>
+
     </div>
   );
 }
