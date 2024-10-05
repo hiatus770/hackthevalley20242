@@ -6,6 +6,12 @@ import { redirect, RedirectType } from "next/navigation";
 export default async function RegisterPage() {
     const session = await getServerSession();
 
+    console.log("NOW REDIRECTING . . ."); 
+    console.log(JSON.stringify(session)); 
+    if (!!session) { 
+        redirect("/about");
+    }
+
     if (!session) {
         return (<Form />); 
     } else {

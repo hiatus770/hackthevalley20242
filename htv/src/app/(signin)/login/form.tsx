@@ -54,14 +54,9 @@ export default function Form() {
     const [pendingLogin, setPendingLogin] = useState(false); // Add this line
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-
-
         e.preventDefault();
-
         console.log("SUBMITTING FORM");
-
         const fData = new FormData(e.currentTarget);
-
         const email = (fData.get("email")?.toString() || "").trim().toLowerCase();
 
         // Does not follow character restrictions
@@ -149,6 +144,8 @@ export default function Form() {
                                     : ""
                         }
                     />
+
+
 
                     {pendingLogin ? (
                         <Button

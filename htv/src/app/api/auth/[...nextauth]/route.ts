@@ -47,7 +47,24 @@ const handler = NextAuth({
                 return null;
             }
         })
-    ]
-})
+    ], 
+    callbacks: {
+        async session({ session, token, user }) {
+            // Add custom session properties here
+            if (!!session && !!session.user) {
+                session.user.id = token.id;
+                session.user.type = token.type;
+            }
+            return session;
+        },
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+                token.type = user.type;
+            }
+            return token;
+        }
+    }
+}); 
 
 export { handler as GET, handler as POST }

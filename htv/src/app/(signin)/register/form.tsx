@@ -44,6 +44,9 @@ export default function Form() {
             body: JSON.stringify({
                 email: formData.get("email"),
                 password: formData.get("password"),
+                name: formData.get("name"),
+                phone: formData.get("phone"),
+                address: formData.get("address"),
                 type: "default",
             })
         });
@@ -89,6 +92,36 @@ export default function Form() {
                         type="password"
                         id="password"
                         autoComplete="new-password"
+                    />
+
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Name"
+                        name="name"
+                        autoComplete="name"
+                    />
+
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="phone"
+                        label="Phone nuber"
+                        name="phone"
+                        autoComplete="Phone number"
+                    />
+
+                    <TextField 
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="address"
+                        label="Address"
+                        name="address"
+                        autoComplete="name"
                     />
 
                     <Button
