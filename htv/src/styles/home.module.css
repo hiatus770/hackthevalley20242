@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+/* inter :)  */
+
+/* body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f9f9f9; 
+} */
+
+.navbar {
+    display: flex;
+    align-items: center;         
+    justify-content: space-between; 
+    padding: 20px 40px;         
+    background-color: white;    
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    /* something              */
+}
+
+.titleContainer{
+    background: #d4d4d4;
+}
+.title {
+    font-size: 120px;            
+    font-weight: bold;  
+    margin: 20px 0;         
+    color: black;               
+}
+.titleContainer {
+    display: flex;
+    align-items: center;
+}
+
+/* for container */
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+/* items in menu */
+.menuItems {
+    list-style: none;       
+    display: flex;               
+    flex-direction: row;      
+    align-items: center;         
+    margin-left: 50px;                 
+    padding: 0;     
+    background-color: white;
+}
+
+.menuItems li {
+    margin-left: 20px;          
+}
+
+.menuItems a {
+    font-size: 24px;            
+    color: black;              
+    text-decoration: none;      
+    font-weight: 500;          
+}
