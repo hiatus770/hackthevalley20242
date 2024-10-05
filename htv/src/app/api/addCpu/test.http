@@ -1,0 +1,16 @@
+POST http://localhost:3000/api/addCpu HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John",
+    "address": "123 Main St",
+    "contact": "john.doe@example.com",
+    "model": "Intel Core i9",
+    "socket": "LGA 1200",
+    "chipset": "Z490",
+    "powerConsumption": "125W",
+    "memorySupport": "DDR4",
+    "pcieVersion": "4.0",
+    "imageURL": "http://example.com/image.jpg",
+    "rest": "Additional info"
+}
