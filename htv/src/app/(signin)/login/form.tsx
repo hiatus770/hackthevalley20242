@@ -54,14 +54,9 @@ export default function Form() {
     const [pendingLogin, setPendingLogin] = useState(false); // Add this line
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-
-
         e.preventDefault();
-
         console.log("SUBMITTING FORM");
-
         const fData = new FormData(e.currentTarget);
-
         const email = (fData.get("email")?.toString() || "").trim().toLowerCase();
 
         // Does not follow character restrictions
@@ -94,96 +89,174 @@ export default function Form() {
     const defaultTheme = createTheme();
 
     return (
-        <ThemeProvider theme={customTheme}>
-            <Typography component="h1" variant="h5" sx={{ color: 'white' }}>
-                Login
-            </Typography>
-
-            <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ height: "100%", transform: "translate(0px, -48px)" }}
+        <div style={{ backgroundColor: "#d4d4d4" }}>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-2 mx-auto max-w-md mt-10"
             >
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Username"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                    error={usernameError}
+                    helperText={
+                        usernameError ? usernameMessage : ""
+                    }
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    error={passwordError}
+                    helperText={
+                        usernameError
+                            ? ""
+                            : passwordError
+                                ? passwordMessage
+                                : ""
+                    }
+                />
 
 
-                <Box
-                    component="form"
-                    noValidate
-                    onSubmit={handleSubmit}
-                    sx={{
-                        mt: 1,
-                        width: "90%",
-                    }}
-                >
-                    <TextField
-                        margin="normal"
-                        required
+
+                {pendingLogin ? (
+                    <Button
+                        type="submit"
                         fullWidth
-                        id="email"
-                        label="Username"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        error={usernameError}
-                        helperText={
-                            usernameError ? usernameMessage : ""
-                        }
-                    />
-                    <TextField
-                        margin="normal"
-                        required
+                        variant="contained"
+                        sx={{ mt: 2, mb: 2 }}
+                        disabled
+                    >
+                        <CircularProgress
+                            size={24}
+                            color="inherit"
+                        />
+                    </Button>
+                ) : (
+                    <Button
+                        type="submit"
                         fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        error={passwordError}
-                        helperText={
-                            usernameError
-                                ? ""
-                                : passwordError
-                                    ? passwordMessage
-                                    : ""
-                        }
-                    />
-
-                    {pendingLogin ? (
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 2, mb: 2 }}
-                            disabled
-                        >
-                            <CircularProgress
-                                size={24}
-                                color="inherit"
-                            />
-                        </Button>
-                    ) : (
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 2, mb: 2 }}
-                        >
-                            Login
-                        </Button>
-                    )}
+                        variant="contained"
+                        sx={{ mt: 2, mb: 2 }}
+                    >
+                        Login
+                    </Button>
+                )}
 
 
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%" }}>
-                        <Typography variant="body2" marginRight={1}>Do not have an account?</Typography>
-                        <Link href="/register" variant="body2">
-                            Sign up
-                        </Link>
-                    </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%" }}>
+                    <Typography variant="body2" marginRight={1}>Do not have an account?</Typography>
+                    <Link href="/register" variant="body2">
+                        Sign up
+                    </Link>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
 
-                </Box>
-            </Box>
-        </ThemeProvider>
+        // <ThemeProvider theme={customTheme}>
+        //             <Typography component="h1" variant="h5" sx={{ color: 'white' }}>
+        //                 Login
+        //             </Typography>
+
+        //             <Box
+        //                 display="flex"
+        //                 flexDirection="column"
+        //                 alignItems="center"
+        //                 justifyContent="center"
+        //                 sx={{ height: "100%", transform: "translate(0px, -48px)" }}
+        //             >
+
+
+        //                 <Box
+        //                     component="form"
+        //                     noValidate
+        //                     onSubmit={handleSubmit}
+        //                     sx={{
+        //                         mt: 1,
+        //                         width: "90%",
+        //                     }}
+        //                 >
+        //                     <TextField
+        //                         margin="normal"
+        //                         required
+        //                         fullWidth
+        //                         id="email"
+        //                         label="Username"
+        //                         name="email"
+        //                         autoComplete="email"
+        //                         autoFocus
+        //                         error={usernameError}
+        //                         helperText={
+        //                             usernameError ? usernameMessage : ""
+        //                         }
+        //                     />
+        //                     <TextField
+        //                         margin="normal"
+        //                         required
+        //                         fullWidth
+        //                         name="password"
+        //                         label="Password"
+        //                         type="password"
+        //                         id="password"
+        //                         autoComplete="current-password"
+        //                         error={passwordError}
+        //                         helperText={
+        //                             usernameError
+        //                                 ? ""
+        //                                 : passwordError
+        //                                     ? passwordMessage
+        //                                     : ""
+        //                         }
+        //                     />
+
+
+
+        //                     {pendingLogin ? (
+        //                         <Button
+        //                             type="submit"
+        //                             fullWidth
+        //                             variant="contained"
+        //                             sx={{ mt: 2, mb: 2 }}
+        //                             disabled
+        //                         >
+        //                             <CircularProgress
+        //                                 size={24}
+        //                                 color="inherit"
+        //                             />
+        //                         </Button>
+        //                     ) : (
+        //                         <Button
+        //                             type="submit"
+        //                             fullWidth
+        //                             variant="contained"
+        //                             sx={{ mt: 2, mb: 2 }}
+        //                         >
+        //                             Login
+        //                         </Button>
+        //                     )}
+
+
+        //                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%" }}>
+        //                         <Typography variant="body2" marginRight={1}>Do not have an account?</Typography>
+        //                         <Link href="/register" variant="body2">
+        //                             Sign up
+        //                         </Link>
+        //                     </div>
+
+        //                 </Box>
+        //             </Box>
+        //         </ThemeProvider>
+
     );
 }

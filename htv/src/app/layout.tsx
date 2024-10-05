@@ -1,15 +1,29 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../styles/globals.css";
+import React from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
+  weight: "100 900",
+});
+
+const meditalic = localFont({
+  src: "./fonts/Switzer-MediumItalic.otf",
+  variable: "--font-switzer-meditalic",
+  weight: "100 900",
+});
+
+const semibolditalic = localFont({
+  src: "./fonts/Switzer-SemiboldItalic.otf",
+  variable: "--font-switzer-semibolditalic",
   weight: "100 900",
 });
 
@@ -24,9 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{backgroundColor: "#7f85a1"}}>
+    <html lang="en" style={{ backgroundColor: "#d4d4d4" }}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      // className={`${meditalic.variable} ${semibolditalic.variable} antialiased`}
+
       >
         {children}
       </body>

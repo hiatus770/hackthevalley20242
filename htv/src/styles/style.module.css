@@ -1,7 +1,7 @@
 @value primary: #1c3dc9;
-@value primaryColor: #030059;
-@value darkPrimaryColor: #000930;
-@value background: #7f85a1;
+@value primaryColor: black;
+@value darkPrimaryColor: #31bcb1;
+@value background: #d0d0d0;
 @value secondaryColor: #08a0ff;
 
 .pageContainer {
@@ -108,7 +108,7 @@
   font-size: 50px;
   font-weight: 900;
   justify-items: center;
-  color: primaryColor;
+  color: black;
   text-decoration: none;
   margin-left: 0%;
 }

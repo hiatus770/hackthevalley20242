@@ -5,7 +5,7 @@ import { neon } from "@neondatabase/serverless";
 // localhost:3000/api/auth/register
 export async function POST(request: Request){
     try {
-        let {email, password, type} = await request.json();   
+        let {email, password, type, name, phone, address} = await request.json();   
         // Validate the email and the password here!
         console.log({email, password, type});
         
@@ -20,8 +20,8 @@ export async function POST(request: Request){
 
         const sql = neon(process.env.DATABASE_URL as string); 
         const response = await sql `
-        INSERT INTO users (email, password, type) 
-        VALUES (${email}, ${hashedPassword}, ${type})
+        INSERT INTO users (email, password, type, name, phone, address) 
+        VALUES (${email}, ${hashedPassword}, ${type}, ${name}, ${phone}, ${address})
         `; 
         console.log({response});
 
