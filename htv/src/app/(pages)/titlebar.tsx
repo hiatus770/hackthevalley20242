@@ -58,14 +58,6 @@ export default function TitleBar() {
 
         const [isHovered, setIsHovered] = useState(false);
 
-        useEffect(() => {
-            // Set isHovered to true after component mounts
-            setIsHovered(true);
-
-            // Set it back to false when component unmounts
-            return () => setIsHovered(false);
-        }, []);
-
 
         return (
             <>
