@@ -19,7 +19,7 @@ export default function About() {
             <p className={textstyles.bodytext} >
             Our website allows users to easily submit PC components. We analyze part compatibility to find the best combinations, reducing logistics costs and improving convenience. Refurbished computers are then donated to schools and individuals in need. Using Neon for our SQL database, we efficiently store and retrieve user and component data, seamlessly integrating it with a dynamic frontend built in React via Next.js. Our biggest challenge was learning new cheese within 36 hours, balancing backend SQL with frontend design. Despite varying experience levels, we worked effectively together, each contributing to the project's success. </p>
             <p className={styles.sectitle}>Brought to you by:</p>
-            <p className={styles.sectitleBottom}>Daniel, Marven, Martias, and Shalott</p>
+            <p className={styles.sectitleBottom}>Daniel, Marven, Matias, and Shalott</p>
             
         </div>
     );
