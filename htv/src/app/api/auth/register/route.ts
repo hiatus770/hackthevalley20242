@@ -15,9 +15,7 @@ export async function POST(request: Request){
         if (type === null){
             type = 'user';
         }
-
-        // 3 types: company user admin 
-
+        
         const sql = neon(process.env.DATABASE_URL as string); 
         const response = await sql `
         INSERT INTO users (email, password, type, name, phone, address) 

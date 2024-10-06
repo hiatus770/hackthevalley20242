@@ -320,16 +320,18 @@ export default function Admin() {
 
     return (
         <>
-            <h1 styles={styles.secTitle}> Upload page </h1>
+            <h1 className={styles.sectitle}> Upload Components! </h1>
             <AddItemDialog open={open} handleClose={handleClose} handleSubmit={handleSubmit} item={item} />
-            <Button onClick={() => openUpload("cpu")}> Upload CPU </Button>
-            <Button onClick={() => openUpload("gpu")}> Upload GPU </Button>
-            <Button onClick={() => openUpload("cooling")}> Upload Cooling part </Button>
-            <Button onClick={() => openUpload("harddrive")}> Upload Harddrive</Button>
-            <Button onClick={() => openUpload("ram")}> Upload Ram </Button>
-            <Button onClick={() => openUpload("psu")}> Upload Power Supply </Button>
-            <Button onClick={() => openUpload("pccase")}> Upload Case </Button>
-            <Button onClick={() => openUpload("motherboard")}> Upload Motherboard </Button>
+            <div className={styles.buttons}>
+                <Button onClick={() => openUpload("cpu")}> Upload CPU </Button>
+                <Button onClick={() => openUpload("gpu")}> Upload GPU </Button>
+                <Button onClick={() => openUpload("cooling")}> Upload Cooling part </Button>
+                <Button onClick={() => openUpload("harddrive")}> Upload Harddrive</Button>
+                <Button onClick={() => openUpload("ram")}> Upload Ram </Button>
+                <Button onClick={() => openUpload("psu")}> Upload Power Supply </Button>
+                <Button onClick={() => openUpload("pccase")}> Upload Case </Button>
+                <Button onClick={() => openUpload("motherboard")}> Upload Motherboard </Button>
+            </div>
         </>
     );
 }
