@@ -7,6 +7,7 @@ import { Button } from "./button.tsx"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "./card.tsx"
 
+import cardStyles from "../../../styles/card.module.css";
 
 
 export default function Admin() {
@@ -177,13 +178,26 @@ export default function Admin() {
     function generateCoolingParts(coolingParts: coolingPart[]) {
         return coolingParts.map((part) => {
             return (
-                <li>
-                    <h1>{part.model_name}</h1>
-                    <p>{part.description}</p>
-                    <p>{part.socket_type}</p>
-                    <p>{part.fan_size}</p>
-                    <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-                </li>
+                <div className={cardStyles.cardContainer}>
+
+                    <div className={cardStyles.cardImg}>
+                        <img
+                            style={{ width: "50px", height: "50px" }}
+                            src={part.image}
+                            alt="image"
+                        />
+                    </div>
+
+                    <div className={cardStyles.text}>
+                        <li>
+                            <h1>{part.model_name}</h1>
+                            <p>{part.description}</p>
+                            <p>{part.socket_type}</p>
+                            <p>{part.fan_size}</p>
+                            <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
+                        </li>
+                    </div>
+                </div>
             );
         });
     }
@@ -214,18 +228,31 @@ export default function Admin() {
         }
 
         return cpuParts.map((part: cpuPart) => (
-            
-            <li key={part.model_name + part.address + part.tdp}>
-                <h3>{part.model_name}</h3>
-                <p>Socket Type: {part.socket_type}</p>
-                <p>Chipset: {part.chipset}</p>
-                <p>TDP: {part.tdp}</p>
-                <p>DDR: {part.ddr}</p>
-                <p>PCIe: {part.pcie}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address + part.tdp}>
+                        <h3 style={{ fontWeight: "bold" }}>{part.model_name}</h3>
+                        <p>Socket Type: {part.socket_type}</p>
+                        <p>Chipset: {part.chipset}</p>
+                        <p>TDP: {part.tdp}</p>
+                        <p>DDR: {part.ddr}</p>
+                        <p>PCIe: {part.pcie}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+                    </li>
+                </div>
+
+            </div>
         ));
     }
 
@@ -251,16 +278,30 @@ export default function Admin() {
         }
 
         return gpuParts.map((part: gpuPart) => (
-            <li key={part.model_name + part.address + part.psu}>
-                <h3>{part.model_name}</h3>
-                <p>PCIe: {part.pcie}</p>
-                <p>PSU: {part.psu}</p>
-                <p>Cooling: {part.cooling}</p>
-                <p>Monitor: {part.monitor}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address + part.psu}>
+                        <h3>{part.model_name}</h3>
+                        <p>PCIe: {part.pcie}</p>
+                        <p>PSU: {part.psu}</p>
+                        <p>Cooling: {part.cooling}</p>
+                        <p>Monitor: {part.monitor}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+                    </li>
+                </div>
+
+            </div>
         ));
     }
 
@@ -285,15 +326,29 @@ export default function Admin() {
         }
 
         return harddriveParts.map((part: harddrivePart) => (
-            <li key={part.model_name + part.address + part.hd_interface}>
-                <h3>{part.model_name}</h3>
-                <p>HD Interface: {part.hd_interface}</p>
-                <p>Form Factor: {part.form_factor}</p>
-                <p>Cooling: {part.cooling}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address + part.hd_interface}>
+                        <h3>{part.model_name}</h3>
+                        <p>HD Interface: {part.hd_interface}</p>
+                        <p>Form Factor: {part.form_factor}</p>
+                        <p>Cooling: {part.cooling}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+
+                    </li>
+                </div>
+            </div>
         ));
     }
 
@@ -320,18 +375,32 @@ export default function Admin() {
         }
 
         return motherboardParts.map((part: motherboardPart) => (
-            <li key={part.model_name + part.address + part.power_connect}>
-                <h3>{part.model_name}</h3>
-                <p>Socket Type: {part.socket_type}</p>
-                <p>Chipset: {part.chipset}</p>
-                <p>DDR: {part.ddr}</p>
-                <p>PCIe: {part.pcie}</p>
-                <p>Form Factor: {part.form_factor}</p>
-                <p>Power Connect: {part.power_connect}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address + part.power_connect}>
+                        <h3>{part.model_name}</h3>
+                        <p>Socket Type: {part.socket_type}</p>
+                        <p>Chipset: {part.chipset}</p>
+                        <p>DDR: {part.ddr}</p>
+                        <p>PCIe: {part.pcie}</p>
+                        <p>Form Factor: {part.form_factor}</p>
+                        <p>Power Connect: {part.power_connect}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+
+                    </li>
+                </div>
+            </div>
         ));
     }
 
@@ -353,13 +422,27 @@ export default function Admin() {
         }
 
         return pccaseParts.map((part: pccasePart) => (
-            <li key={part.model_name + part.address}>
-                <h3>{part.model_name}</h3>
-                <p>Form Factor: {part.form_factor}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address}>
+                        <h3>{part.model_name}</h3>
+                        <p>Form Factor: {part.form_factor}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+
+                    </li>
+                </div>
+            </div>
         ));
     }
 
@@ -384,16 +467,30 @@ export default function Admin() {
         }
 
         return psuParts.map((part: psuPart) => (
-            <li key={part.model_name + part.address + part.wattage}>
-                <h3>{part.model_name}</h3>
-                <p>Wattage: {part.wattage}</p>
-                <p>Efficiency: {part.efficiency}</p>
-                <p>Power Connect: {part.power_connect}</p>
-                <p>Form Factor: {part.form_factor}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address + part.wattage}>
+                        <h3>{part.model_name}</h3>
+                        <p>Wattage: {part.wattage}</p>
+                        <p>Efficiency: {part.efficiency}</p>
+                        <p>Power Connect: {part.power_connect}</p>
+                        <p>Form Factor: {part.form_factor}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+
+                    </li>
+                </div>
+            </div>
         ));
     }
 
@@ -418,16 +515,29 @@ export default function Admin() {
         }
 
         return ramParts.map((part: ramPart) => (
-            <li key={part.model_name + part.address + part.speed}>
-                <h3>{part.model_name}</h3>
-                <p>Speed: {part.speed}</p>
-                <p>DDR: {part.ddr}</p>
-                <p>Capacity: {part.capacity}</p>
-                <p>Num Channels: {part.num_channels}</p>
-                <p>Contact: {part.contact}</p>
-                <p>Address: {part.address}</p>
-                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
-            </li>
+            <div className={cardStyles.cardContainer}>
+
+                <div className={cardStyles.cardImg}>
+                    <img
+                        style={{ width: "50px", height: "50px" }}
+                        src={part.image}
+                        alt="image"
+                    />
+                </div>
+
+                <div className={cardStyles.text}>
+                    <li key={part.model_name + part.address + part.speed}>
+                        <h3>{part.model_name}</h3>
+                        <p>Speed: {part.speed}</p>
+                        <p>DDR: {part.ddr}</p>
+                        <p>Capacity: {part.capacity}</p>
+                        <p>Num Channels: {part.num_channels}</p>
+                        <p>Contact: {part.contact}</p>
+                        <p>Address: {part.address}</p>
+
+                    </li>
+                </div>
+            </div>
         ));
     }
 
@@ -627,13 +737,13 @@ export default function Admin() {
                 </CardHeader>
                 <CardContent>
                     {selectedTab === "parts" ? (
-  
+
                         <div style={{ backgroundColor: "white", color: "black" }}>
                             <button onClick={() => setPageState("pcs")}></button>
                             <ul className={styles.pcitems}>
                                 <li className={styles.sectitle}>CPUs</li>
                                 <ul>
-                                    {generateCpuParts(cpuParts)}  
+                                    {generateCpuParts(cpuParts)}
                                 </ul>
 
                                 <li className={styles.sectitle}>GPUs</li>
@@ -663,7 +773,7 @@ export default function Admin() {
                             </ul>
                         </div>
                     ) : (
-                        <div style={{ backgroundColor: "#d4d4d4", color: "black" }}>
+                        <div style={{align-items: center backgroundColor: "#d4d4d4", color: "black" }}>
                             <button onClick={() => setPageState("parts")}></button>
                             <ul>
                                 <li className={styles.sectitle}>PCs</li>
