@@ -61,6 +61,9 @@ const handler = NextAuth({
             }
             return token;
         }
+    }, 
+    pages: {
+        signIn: '/login'
     }
 }); 
 

@@ -34,7 +34,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit }) => {
         <Dialog open={open} onClose={handleClose} fullWidth>
             <DialogTitle align="center" variant="h5" sx={{
                 display: 'flex', justifyContent: 'center', alignItems: 'center',
-                background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 100%)',
+                background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 'bold',

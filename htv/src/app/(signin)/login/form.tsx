@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import react from "react";
 import { getServerSession } from "next-auth";
 
+import styles from "../../../styles/home.module.css"; 
+
 import {
     Button,
     CircularProgress,
@@ -89,7 +91,8 @@ export default function Form() {
     const defaultTheme = createTheme();
 
     return (
-        <div style={{ backgroundColor: "#d4d4d4" }}>
+        <div style={{ backgroundColor: "#ffffff" }}>
+            <h1 className={styles.sectitle} style={{ textAlign: "center", fontSize:"60px", marginBottom: "0px", fontFamily: "Ubuntu Mono, monospace"}}>Log into Bit by Bit</h1>
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-2 mx-auto max-w-md mt-10"

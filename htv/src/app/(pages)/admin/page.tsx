@@ -23,6 +23,8 @@ export default function Admin() {
         checkSession();
     }, []);
 
+    const [selectedTab, setSelectedTab] = useState<"parts" | "pcs" | "req">("parts")
+
     // Can either be "parts" which it displays every part, or "pcs" which displays every possible pc build 
     const [pageState, setPageState] = React.useState("parts");
     const [coolingParts, setCoolingParts] = React.useState([]);
@@ -749,7 +751,20 @@ export default function Admin() {
                             <p className={styles.flexRow}>Address: {req.address}</p>
                             <p className={styles.flexRow}>Specs: {req.specs}</p>
                             <p className={styles.flexRow}>Budget: {req.budget}</p>
+
                         </li>
+                        <button className={cardStyles.reqButton} onClick={() => {
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: req.id,
+                                    item: "requests"
+                                })
+                            });
+                        } }>Delete Request</button>
                     </div>
                 </div>
             );
@@ -759,7 +774,6 @@ export default function Admin() {
 
     //EXPERIMENT
     ///////////////////////////////////////////////////////////
-    const [selectedTab, setSelectedTab] = useState<"parts" | "pcs" | "req">("parts")
 
     if (selectedTab === "parts") {
         return (
@@ -789,7 +803,7 @@ export default function Admin() {
                 </div>
                 <Card>
                     <CardHeader>
-                        <CardTitle style={{ color: "black" }}>{selectedTab === "parts" ? "Computer Parts" : "Pre-built PCs"}</CardTitle>
+                        <CardTitle style={{ color: "black" }}>{"Computer Parts"}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div style={{ backgroundColor: "white", color: "black" }}>
@@ -868,7 +882,6 @@ export default function Admin() {
                     <CardContent>
                         <div style={{ backgroundColor: "white", color: "black" }}>
                             <ul>
-                                <li className={styles.sectitle}>PCs</li>
                                 <ul className={styles.sectText}>
                                     {generatePcs(pcs)}
                                 </ul>

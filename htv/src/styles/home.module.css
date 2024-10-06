@@ -57,6 +57,31 @@
     font-weight: bold;
     color: black;
     margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(45deg, myblue, rgb(27, 27, 170)); /* Gradient background */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show background */
+    background-clip: text; /* Clip background to text for other browsers */
+    text-fill-color: transparent; /* Make text transparent to show background for other browsers */
+}
+
+.sectitleBlack {
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    /* font-style: italic; */
+    margin-top: 20px;
+    font-size: 70px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(45deg, myblue, rgb(0, 0, 0)); /* Gradient background */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show background */
+    background-clip: text; /* Clip background to text for other browsers */
+    text-fill-color: transparent; /* Make text transparent to show background for other browsers */
 }
 
 .sectitleBottom {
@@ -187,18 +212,23 @@
 
 
 .buttons button {
-    padding: 10px 20px;
+    padding: 20px 40px;
     font-family: 'inter', sans-serif;
-    font-size: 20px;
-    background-color: myblue;
+    font-size: 25px;
+    font-weight: bold; /* Make the font thicker */
+    background: linear-gradient(45deg, myblue, darkblue); /* Gradient background */
+    background-size: 200% 200%; /* Double the background size */
+    background-position: left center; /* Initial position */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 20px;
     margin-top: 20px;
+    margin-left: 20px; 
+    transition: background-position 0.75s ease; /* Add transition for smooth animation */
 
     &:hover {
-        background-color: myblue;
+        background-position: right center; /* Change position on hover */
     }
 }

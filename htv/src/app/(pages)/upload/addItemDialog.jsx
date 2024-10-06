@@ -34,7 +34,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -109,7 +109,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -120,7 +120,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -188,7 +188,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -200,7 +200,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -261,7 +261,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -273,7 +273,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -341,7 +341,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -352,7 +352,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -420,7 +420,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -431,7 +431,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -485,7 +485,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -496,7 +496,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -542,7 +542,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);
@@ -553,7 +553,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle align="center" variant="h5" sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    background: 'linear-gradient(0deg, #8FBCBB 40%, #5E81AC 90%)',
+                    background: 'linear-gradient(0deg, #0070f3 40%, #5E81AC 90%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 'bold',
@@ -635,7 +635,7 @@ const AddItemDialog = ({ open, handleClose, handleSubmit, item }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Add Chore</Button>
+                    <Button onClick={() => handleSubmit(selectedFile, item)} color="primary" variant="contained">Upload component</Button>
                 </DialogActions>
 
             </Dialog>);

@@ -320,7 +320,7 @@ export default function Admin() {
 
     return (
         <>
-            <h1 className={styles.sectitle}> Upload Components! </h1>
+            <h1 className={styles.sectitleBlack}> Upload Components! </h1>
             <AddItemDialog open={open} handleClose={handleClose} handleSubmit={handleSubmit} item={item} />
             <div className={styles.buttons}>
                 <Button onClick={() => openUpload("cpu")}> Upload CPU </Button>
