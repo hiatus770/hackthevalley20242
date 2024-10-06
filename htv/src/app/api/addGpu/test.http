@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/addCpu HTTP/1.1
+POST http://localhost:3000/api/addGpu HTTP/1.1
 Content-Type: application/json
 
 {
@@ -6,11 +6,11 @@ Content-Type: application/json
     "address": "123 Main St",
     "contact": "john.doe@example.com",
     "model_name": "Intel Core i9",
-    "socket_type": "LGA 1200",
-    "chipset": "Z490",
-    "tdp": "125W",
-    "ddr": "DDR4",
-    "pcie": "4.0",
+    "pcie": "LGA 1200",
+    "psu": "Z490",
+    "cooling": "125W",
+    "monitor": "DDR4",
+    "description": "4.0",
     "image": "http://example.com/image.jpg",
     "rest": "Additional info"
 }

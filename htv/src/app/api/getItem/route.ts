@@ -8,10 +8,12 @@ export async function POST(request: Request) {
 
     try {
         // Query the database with Neon
-        const 
-        const result = await db`SELECT * FROM CPU`;
+        const { item } = await request.json();
+        const query = `SELECT * FROM ${item}`
+        const result = await db(query);
 
         // Return the inserted data to the frontend
+        //console.log(result)
         return NextResponse.json({ success: true, data: result});
     } catch (error) {
         console.error('Error retrieving part:', error);
