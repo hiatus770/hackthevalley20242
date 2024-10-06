@@ -455,6 +455,10 @@ export default function Admin() {
                     <ul>
                         {generatePccaseParts(pccaseParts)}
                     </ul>
+                    <li>Motherboard </li>
+                    <ul>
+                        {generateMotherboardParts(motherboardParts)}
+                    </ul> 
                 </ul>
             </div>
         );
@@ -477,6 +481,9 @@ export default function Admin() {
         }
 
         pcArray.forEach((pc: any) => {
+            if (pc === undefined) {
+                return <p> No PCs found </p>
+            }
             console.log("PC ITEM: ", JSON.stringify(pc));
             console.log("PC ITEM: ", pc[0].model_name);
         });
@@ -500,11 +507,31 @@ export default function Admin() {
 
                         <button onClick={() => {
 
-                            // Download a text file with the pc build stats 
                             const element = document.createElement("a");
-                            const file = new Blob([JSON.stringify(pc)], { type: 'text/plain' });
+    
+                            // Format the pc object into a string
+                            let pcString = "";
+                            pc.forEach((part: any) => {
+                                pcString += JSON.stringify(part, null, 2) + "\n";
+                            });
+
+                            // remove all quotes
+                            pcString = pcString.replace(/"/g, "");
+                            // remove all commas
+                            pcString = pcString.replace(/,/g, "");
+                            // Remove all curly braces
+                            pcString = pcString.replace(/{/g, "");
+                            pcString = pcString.replace(/}/g, "");
+
+                            // Create a file and download it
+                            const file = new Blob([pcString], { type: 'text/plain' });
+
                             element.href = URL.createObjectURL(file);
                             element.download = "pcInformation.txt";
+                            document.body.appendChild(element); // Required for this to work in FireFox
+                            element.click();
+                            document.body.removeChild(element);
+
 
                             console.log("PC: ", pc);
                             fetch("/api/deleteItemById", {
