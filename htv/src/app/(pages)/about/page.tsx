@@ -1,19 +1,15 @@
 "use client";
-import { getSession } from "next-auth/react";
-import Image from "next/image";
-import { redirect } from "next/navigation";
-import React, { useState, useRef } from "react";
+import React from "react";
 
 import styles from "../../../styles/home.module.css"
 import textstyles from "../../../styles/pages.module.css";
 
-import logo from "../logo.png";
 
 export default function About() {
     
     return (
         
-        /* About section */
+        /* Aboutsection */
         <div className={styles.aboutSection}>
             <p className={styles.sectitle}>Mission</p>
             <p className={textstyles.bodytext} >Crowdsourcing e-waste to make technological literacy attainable to communities across the globe.</p>
@@ -28,51 +24,3 @@ export default function About() {
         </div>
     );
 }
-// interface AboutSectionProps {
-//     aboutRef: React.RefObject<HTMLDivElement>;
-// }
-
-// const AboutSection: React.FC<AboutSectionProps> = ({ aboutRef }) => {
-//     const [isVisible, setIsVisible] = useState(false);
-
-//     useEffect(() => {
-//         const observer = new IntersectionObserver(
-//             ([entry]) => {
-//                 if (entry.isIntersecting) {
-//                     setIsVisible(true);
-//                     observer.unobserve(entry.target);
-//                 }
-//             },
-//             { threshold: 1.0 }
-//         );
-
-//         if (aboutRef.current) {
-//             observer.observe(aboutRef.current);
-//         }
-
-//         return () => {
-//             if (aboutRef.current) {
-//                 observer.unobserve(aboutRef.current);
-//             }
-//         };
-
-//     }, [aboutRef]);
-
-//     return (
-
-//         <div
-//             ref={aboutRef}
-//             id="about"
-//             className={`${styles.aboutSection} ${isVisible ? styles.visible : styles.hidden}`}
-//         >
-//             <h1 className={styles.bodytext}>What we do</h1>
-//             <p className={styles.bodytext}>
-//                 Our website will allow you to upload any of your old computer parts
-//             </p>
-//             <h1>Mission</h1>
-//             <p>Crowdsourcing e-waste to make technological literacy attainable to communities across the globe.</p>
-//         </div>
-//     );
-// };
-
-// export default AboutSection;
