@@ -4,12 +4,13 @@ import styles from '../../styles/style.module.css';
 import { useState } from 'react';
 import Logout from "./logout";
 import LoginInOut from "./loginlogout";
-// import ''./TitleBar.css'; 
 import logo from '../../logo.png';
 import { getSession } from "next-auth/react";
 
-export default function TitleBar() {
+// for title bar only
+import navStyle from '../../styles/home.module.css';
 
+export default function TitleBar() {
     interface Session {
         user: {
             type: string;
@@ -30,28 +31,51 @@ export default function TitleBar() {
 
     if (!!session && session.user.type === "admin") {
         return (
-            <>
-                < nav className={styles.Titlebar} >
-                    <img className={styles.logo} src={logo.src} alt="logo" />
-                    <a className={styles.title} href="/">Bit by Bit</a>
-                    <div className={styles.menu}>
-                        <ul className={styles.menuItems}>
-                            <li> <a href="/about" >About</a> </li>
-                            <li> <a href="/upload" >Upload</a> </li>
-                            <li> <a href="/request" >Request</a> </li>
-                            <li> <a href="/admin" >Admin</a> </li>
-                            <li> <Logout /> </li>
-                        </ul>
-                    </div>
-                </nav >
-            </>
+            <div className={styles.bigContainer}> {/**something  */}
+
+                {/* title container */}
+                <div className={navStyle.headerContainer}>
+                    <img className={navStyle.logo} src={logo.src} alt="logo" />
+                    <h1 style={{ fontFamily: 'Ubuntu Mono, monospace', fontSize: '60px', fontWeight: 'bold', color: 'black' }}>
+                        Bit by Bit
+                    </h1>
+                </div>
+
+                {/* navbar */}
+                < nav className={navStyle.navbar} >
+                    <ul className={navStyle.menuItems}>
+                        <li> <a href="/about" >About</a> </li>
+                        <li> <a href="/upload" >Upload</a> </li>
+                        <li> <a href="/request" >Request</a> </li>
+                        <li> <a href="/admin" >Admin</a> </li>
+                        <li> <Logout /> </li>
+                    </ul>
+                </nav>
+            </div >
+
         );
-    } else if (!!session){
+    } else if (!!session) {
+
+        const [isHovered, setIsHovered] = useState(false);
+
+
         return (
             <>
-                < nav className={styles.Titlebar} >
-                    <img className={styles.logo} src={logo.src} alt="logo" />
-                    <a className={styles.title} href="/">Bit by Bit</a>
+                <div className={navStyle.headerContainer}>
+                    <img className={navStyle.logo} src={logo.src} alt="logo" />
+                    <a href="/"
+                        style={{
+                            fontFamily: 'Ubuntu Mono, monospace',
+                            fontSize: '60px',
+                            fontWeight: 'bold',
+                            color: isHovered ? '#0070f3' : 'black',
+                        }}>
+                        Bit by Bit
+                    </a>
+                </div >
+
+                <nav className={styles.Titlebar} >
+
                     <div className={styles.menu}>
                         <ul className={styles.menuItems}>
                             <li> <a href="/about" >About</a> </li>
@@ -65,20 +89,27 @@ export default function TitleBar() {
         );
     } else {
         return (
-            <>
-                < nav className={styles.Titlebar} >
-                    <img className={styles.logo} src={logo.src} alt="logo" />
-                    <a className={styles.title} href="/">Bit by Bit</a>
-                    <div className={styles.menu}>
-                        <ul className={styles.menuItems}>
-                            <li> <a href="/about" >About</a> </li>
-                            <li> <a href="/upload" >Upload</a> </li>
-                            <li> <a href="/request" >Request</a> </li>
-                            <li> <a href="/login">Login</a> </li>
-                        </ul>
-                    </div>
-                </nav >
-            </>
+            <div className={styles.bigContainer}> {/**something  */}
+
+                {/* title container */}
+                <div className={navStyle.headerContainer}>
+                    <img className={navStyle.logo} src={logo.src} alt="logo" />
+                    <h1 style={{ fontFamily: 'Ubuntu Mono, monospace', fontSize: '60px', fontWeight: 'bold', color: 'black' }}>
+                        Bit by Bit
+                        <a href="/" ></a>
+                    </h1>
+                </div>
+
+                {/* navbar */}
+                < nav className={navStyle.navbar} >
+                    <ul className={navStyle.menuItems}>
+                        <li> <a href="/about" >About</a> </li>
+                        <li> <a href="/upload" >Upload</a> </li>
+                        <li> <a href="/request" >Request</a> </li>
+                        <li> <a href="/login">Login</a> </li>
+                    </ul>
+                </nav>
+            </div >
         );
     }
 }
