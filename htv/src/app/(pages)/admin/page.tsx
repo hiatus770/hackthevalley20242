@@ -2,11 +2,11 @@
 import { getSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import React from "react";
-import styles from "../../../styles/home.module.css";
 import { Button } from "./button.tsx"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "./card.tsx"
 
+import styles from "../../../styles/home.module.css";
 import cardStyles from "../../../styles/card.module.css";
 
 
@@ -36,6 +36,7 @@ export default function Admin() {
 
     // Potential PCS received from /getPcs endpoint 
     const [pcs, setPcs] = React.useState([]);
+    const [req, setReq] = React.useState([]);
 
     React.useEffect(() => {
         async function getParts() {
@@ -58,6 +59,17 @@ export default function Admin() {
                     },
                     body: JSON.stringify({
                         item: "cpu"
+                    })
+                });
+
+            const req = await fetch("/api/getItem",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        item: "requests"
                     })
                 });
 
@@ -145,6 +157,7 @@ export default function Admin() {
             const motherboardPartsJson = await motherboard.json();
             const pccasePartsJson = await pccase.json();
             const pcsJson = await pcs.json();
+            const reqJson = await req.json();
 
             console.log("CPU PARTS: ", JSON.stringify(cpuPartsJson));
 
@@ -157,6 +170,7 @@ export default function Admin() {
             setMotherboardParts(motherboardPartsJson);
             setPccaseParts(pccasePartsJson);
             setPcs(pcsJson);
+            setReq(reqJson);
         }
         getParts();
     }, []);
@@ -175,11 +189,16 @@ export default function Admin() {
     }
 
     // Make a function that takes in a list of parts and returns a list of li elements
-    function generateCoolingParts(coolingParts: coolingPart[]) {
-        return coolingParts.map((part) => {
+    function generateCoolingParts(coolingParts: any) {
+        const coolingArray = coolingParts.data;
+
+        if (coolingArray === undefined) {
+            return <p> No Cooling found </p>
+        }
+
+        return coolingArray.map((part: coolingPart) => {
             return (
                 <div className={cardStyles.cardContainer}>
-
                     <div className={cardStyles.cardImg}>
                         <img
                             style={{ width: "50px", height: "50px" }}
@@ -194,7 +213,6 @@ export default function Admin() {
                             <p>{part.description}</p>
                             <p>{part.socket_type}</p>
                             <p>{part.fan_size}</p>
-                            <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
                         </li>
                     </div>
                 </div>
@@ -570,10 +588,9 @@ export default function Admin() {
         return pcArray.map((pc: any) => {
             return (
                 <div style={{ backgroundColor: "white" }}>
-                    <li className="pc-items">
-                        <h1>{pc[0].model_name}</h1>
+                    <li className="pcitems">
+                        <h1 style={{ fontSize: "24px" }}>{pc[0].model_name}</h1>
                         <ul>
-                            <li> ----------------------------</li>
                             <li>{pc[1].model_name}</li>
                             <li>{pc[2].model_name}</li>
                             <li>{pc[3].model_name}</li>
@@ -581,18 +598,23 @@ export default function Admin() {
                             <li>{pc[5].model_name}</li>
                             <li>{pc[6].model_name}</li>
                             <li>{pc[7].model_name}</li>
-                            <li> ----------------------------</li>
                         </ul>
 
-                        <button onClick={() => {
-
+                        <button className={cardStyles.buildButton} onClick={() => {
                             const element = document.createElement("a");
 
                             // Format the pc object into a string
                             let pcString = "";
                             pc.forEach((part: any) => {
-                                pcString += JSON.stringify(part, null, 2) + "\n";
-                            });
+                                
+                                for (const [key, value] of Object.entries(part)) {
+                                    if (key === "image") {
+                                        continue;
+                                    }
+                                    pcString += `${key}: ${value}\n`;
+                                }
+                                pcString += "\n";}
+                            );
 
                             // remove all quotes
                             pcString = pcString.replace(/"/g, "");
@@ -706,40 +728,71 @@ export default function Admin() {
         });
     }
 
-    // If on parts page return parts display (use the /getCpus, /getGpus, etc. endpoints and then display them iteratively in a ul) 
-    // If on pcs page return pcs display (use the /getPcs endpoint and then display them iteratively in a ul)
+    function generateReq(req: any) {
+        console.log("REQ: ", JSON.stringify(req));
+        const reqArray = req.data; // This is a 2d array of pcs, each pc has an array of its parts
+        console.log("REQ ARRAY: ", reqArray);
+
+        if (reqArray === undefined) {
+            return <p> No Requests found </p>
+        }
+
+        return reqArray.map((req: any) => {
+            return (
+                <div className={cardStyles.reqContainer}>
+                    <div className={cardStyles.reqtext}>
+                        <li key={req.user_name + req.contact}>
+                            <h2 style={{ fontSize: "24px", fontWeight: "bold", alignItems: "center" }}>{req.user_name}</h2>
+
+                            <p className={styles.flexRow}>Contact: {req.contact}</p>
+                            <p className={styles.flexRow}>Reason: {req.reason}</p>
+                            <p className={styles.flexRow}>Address: {req.address}</p>
+                            <p className={styles.flexRow}>Specs: {req.specs}</p>
+                            <p className={styles.flexRow}>Budget: {req.budget}</p>
+                        </li>
+                    </div>
+                </div>
+            );
+        });
+    }
 
 
     //EXPERIMENT
     ///////////////////////////////////////////////////////////
-    const [selectedTab, setSelectedTab] = useState<"parts" | "pcs">("parts")
-    return (
-        <div className="container mx-auto px-4 py-8 whitebg">
-            <div className="flex justify-center space-x-4 mb-6">
-                <Button
-                    variant={selectedTab === "parts" ? "default" : "outline"}
-                    onClick={() => setSelectedTab("parts")}
-                    className="w-32"
-                >
-                    Parts
-                </Button>
-                <Button
-                    variant={selectedTab === "pcs" ? "default" : "outline"}
-                    onClick={() => setSelectedTab("pcs")}
-                    className="w-32"
-                >
-                    PCs
-                </Button>
-            </div>
-            <Card>
-                <CardHeader>
-                    <CardTitle style={{ color: "black" }}>{selectedTab === "parts" ? "Computer Parts" : "Pre-built PCs"}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    {selectedTab === "parts" ? (
+    const [selectedTab, setSelectedTab] = useState<"parts" | "pcs" | "req">("parts")
 
+    if (selectedTab === "parts") {
+        return (
+            <div className="container mx-auto px-4 py-8 whitebg">
+                <div className="flex justify-center space-x-4 mb-6">
+                    <Button
+                        variant={selectedTab === "parts" ? "default" : "outline"}
+                        onClick={() => setSelectedTab("parts")}
+                        className="w-32"
+                    >
+                        Parts
+                    </Button>
+                    <Button
+                        variant={"default"}
+                        onClick={() => setSelectedTab("pcs")}
+                        className="w-32"
+                    >
+                        PCs
+                    </Button>
+                    <Button
+                        variant={"default"}
+                        onClick={() => setSelectedTab("req")}
+                        className="w-32"
+                    >
+                        Requests
+                    </Button>
+                </div>
+                <Card>
+                    <CardHeader>
+                        <CardTitle style={{ color: "black" }}>{selectedTab === "parts" ? "Computer Parts" : "Pre-built PCs"}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
                         <div style={{ backgroundColor: "white", color: "black" }}>
-                            <button onClick={() => setPageState("pcs")}></button>
                             <ul className={styles.pcitems}>
                                 <li className={styles.sectitle}>CPUs</li>
                                 <ul>
@@ -770,28 +823,106 @@ export default function Admin() {
                                 <ul>
                                     {generateMotherboardParts(motherboardParts)}
                                 </ul>
+                                <li className={styles.sectitle}>Cooling</li>
+                                <ul>
+                                    {generateCoolingParts(coolingParts)}
+                                </ul>
                             </ul>
                         </div>
-                    ) : (
-                        <div  style={{ backgroundColor: "white", color: "black" }}>
-                            <button onClick={() => setPageState("parts")}></button>
+                    </CardContent>
+                </Card>
+            </div >
+
+        );
+    }
+    if (selectedTab === "pcs") {
+        return (
+            <div className="container mx-auto px-4 py-8 whitebg">
+                <div className="flex justify-center space-x-4 mb-6">
+                    <Button
+                        variant={"default"}
+                        onClick={() => setSelectedTab("parts")}
+                        className="w-32"
+                    >
+                        Parts
+                    </Button>
+                    <Button
+                        variant={"outline"}
+                        onClick={() => setSelectedTab("pcs")}
+                        className="w-32"
+                    >
+                        PCs
+                    </Button>
+                    <Button
+                        variant={"default"}
+                        onClick={() => setSelectedTab("req")}
+                        className="w-32"
+                    >
+                        Requests
+                    </Button>
+                </div>
+                <Card>
+                    <CardHeader>
+                        <CardTitle style={{ color: "black" }}>{"Pre-built PCs"}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div style={{ backgroundColor: "white", color: "black" }}>
                             <ul>
                                 <li className={styles.sectitle}>PCs</li>
-                                <ul>
+                                <ul className={styles.sectText}>
                                     {generatePcs(pcs)}
                                 </ul>
                             </ul>
                         </div>
-                    )}
+                    </CardContent>
+                </Card>
+            </div >
+
+
+        );
+    } else if (selectedTab === "req") {
+        return (
+            <div className="container mx-auto px-4 py-8 whitebg">
+                <div className="flex justify-center space-x-4 mb-6">
+                    <Button
+                        variant={"default"}
+                        onClick={() => setSelectedTab("parts")}
+                        className="w-32"
+                    >
+                        Parts
+                    </Button>
+                    <Button
+                        variant={"default"}
+                        onClick={() => setSelectedTab("pcs")}
+                        className="w-32"
+                    >
+                        PCs
+                    </Button>
+                    <Button
+                        variant={"outline"}
+                        onClick={() => setSelectedTab("req")}
+                        className="w-32"
+                    >
+                        Requests
+                    </Button>
+                </div>
+                <CardContent>
+                    <div style={{ backgroundColor: "white", color: "black" }}>
+                        <ul>
+                            <li className={styles.sectitle}>Requests</li>
+                            <ul className={styles.sectText}>
+                                {generateReq(req)}
+                            </ul>
+                        </ul>
+                    </div>
                 </CardContent>
-            </Card>
-        </div>
-    );
-
-    ///////////////////////////////////////////////////////////
 
 
-
+            </div >
+        );
+    } else {
+        return null;
+    }
 
     return (
         <>
@@ -799,3 +930,4 @@ export default function Admin() {
         </>
     );
 }
+

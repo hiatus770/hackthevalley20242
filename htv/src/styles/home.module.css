@@ -69,6 +69,23 @@
     margin-bottom: 500px;
 }
 
+.sectText {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+    font-family: 'inter', sans-serif;
+}
+
+.sectTextBlue {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+    font-family: 'inter', sans-serif;
+    color: myblue;
+}
+
 .desc {
     margin-bottom: 80px;
     font-family: 'inter', sans-serif;
@@ -151,7 +168,12 @@
 }
 
 
+.pcitems li {
 
+    color: black;
+    margin-bottom: 15px;
+    font-family: 'inter', sans-serif;
+}
 
 .pcitems ul {
     align-items: center;
@@ -162,11 +184,7 @@
     font-family: 'inter', sans-serif;
 }
 
-.pcitems li {
-    color: black;
-    margin-bottom: 15px;
-    font-family: 'inter', sans-serif;
-}
+
 
 .buttons button {
     padding: 10px 20px;
@@ -181,6 +199,6 @@
     margin-top: 20px;
 
     &:hover {
-        background-color: #0053b3;
+        background-color: myblue;
     }
 }

@@ -11,6 +11,8 @@ import { getSession } from "next-auth/react";
 import navStyle from '../../styles/home.module.css';
 
 export default function TitleBar() {
+    const [isHovered, setIsHovered] = useState(false);
+
     interface Session {
         user: {
             type: string;
@@ -56,9 +58,7 @@ export default function TitleBar() {
         );
     } else if (!!session) {
 
-        const [isHovered, setIsHovered] = useState(false);
-
-
+  
         return (
             <>
                 <div className={navStyle.headerContainer}>
