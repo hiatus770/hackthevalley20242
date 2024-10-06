@@ -773,7 +773,7 @@ export default function Admin() {
                             </ul>
                         </div>
                     ) : (
-                        <div style={{align-items: center backgroundColor: "#d4d4d4", color: "black" }}>
+                        <div  style={{ backgroundColor: "white", color: "black" }}>
                             <button onClick={() => setPageState("parts")}></button>
                             <ul>
                                 <li className={styles.sectitle}>PCs</li>

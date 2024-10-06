@@ -58,6 +58,7 @@
     color: black;
     margin-bottom: 10px;
 }
+
 .sectitleBottom {
     font-family: 'Ubuntu Mono', monospace;
     text-align: center;
@@ -153,6 +154,8 @@
 
 
 .pcitems ul {
+    align-items: center;
+    justify-content: center;
     list-style-type: none;
     padding: 0;
     margin-bottom: 15px;
