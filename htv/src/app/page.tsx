@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React, { useState } from "react";
-
+import React, { useState, useRef } from "react";
 import styles from "../styles/home.module.css";
 import logo from "../logo.png";
 
 export default function Home() {
+
   return (
     <div className={styles.bigContainer}>
 
@@ -22,7 +22,7 @@ export default function Home() {
       {/* navbar */}
       < nav className={styles.navbar} >
         <ul className={styles.menuItems}>
-          <li> <a href="/about" >About</a> </li>
+          <li><a href="/about" >About</a></li>
           <li> <a href="/upload" >Upload</a> </li>
           <li> <a href="/request" >Request</a> </li>
         </ul>

@@ -6,6 +6,21 @@
 @value myblue: #0070f3;
 /* can use this for nav bar (not home page) transform: translateY(-5px); */
 
+
+.whitebg {
+    background-color: white;
+}
+
+.aboutSection {
+    align-items: center;
+    justify-content: center;
+    background-color: bg;
+    color: black;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+}
+
+
 .bigContainer {
     background-color: bg;
     display: flex;
@@ -31,6 +46,26 @@
     font-size: 120px;
     font-weight: bold;
     color: black;
+}
+
+.sectitle {
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    /* font-style: italic; */
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+.sectitleBottom {
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    /* font-style: italic; */
+    margin-top: 40px;
+    font-size: 30px;
+    color: black;
+    margin-bottom: 500px;
 }
 
 .desc {
@@ -114,14 +149,18 @@
     margin-top: 40px;
 }
 
-.pcitems li {
-    color: black; 
-    margin-bottom: 20px;
-    font-family: 'inter', sans-serif;
-}
+
+
 
 .pcitems ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin-bottom: 15px;
+    font-family: 'inter', sans-serif;
+}
+
+.pcitems li {
+    color: black;
+    margin-bottom: 15px;
+    font-family: 'inter', sans-serif;
 }

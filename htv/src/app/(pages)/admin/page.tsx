@@ -3,6 +3,11 @@ import { getSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import React from "react";
 import styles from "../../../styles/home.module.css";
+import { Button } from "./button.tsx"
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "./card.tsx"
+
+
 
 export default function Admin() {
 
@@ -177,7 +182,7 @@ export default function Admin() {
                     <p>{part.description}</p>
                     <p>{part.socket_type}</p>
                     <p>{part.fan_size}</p>
-                    <img src={part.image} alt="image" />
+                    <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
                 </li>
             );
         });
@@ -209,6 +214,7 @@ export default function Admin() {
         }
 
         return cpuParts.map((part: cpuPart) => (
+            
             <li key={part.model_name + part.address + part.tdp}>
                 <h3>{part.model_name}</h3>
                 <p>Socket Type: {part.socket_type}</p>
@@ -218,7 +224,7 @@ export default function Admin() {
                 <p>PCIe: {part.pcie}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
     }
@@ -253,7 +259,7 @@ export default function Admin() {
                 <p>Monitor: {part.monitor}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
     }
@@ -286,7 +292,7 @@ export default function Admin() {
                 <p>Cooling: {part.cooling}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
     }
@@ -324,7 +330,7 @@ export default function Admin() {
                 <p>Power Connect: {part.power_connect}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
     }
@@ -352,7 +358,7 @@ export default function Admin() {
                 <p>Form Factor: {part.form_factor}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
     }
@@ -386,7 +392,7 @@ export default function Admin() {
                 <p>Form Factor: {part.form_factor}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
     }
@@ -420,49 +426,9 @@ export default function Admin() {
                 <p>Num Channels: {part.num_channels}</p>
                 <p>Contact: {part.contact}</p>
                 <p>Address: {part.address}</p>
-                <img src={part.image} alt="image" />
+                <img style={{ width: "50px", height: "50px" }} src={part.image} alt="image" />
             </li>
         ));
-    }
-
-    // If on parts page return parts display (use the /getCpus, /getGpus, etc. endpoints and then display them iteratively in a ul) 
-    // If on pcs page return pcs display (use the /getPcs endpoint and then display them iteratively in a ul)
-    if (pageState === "parts") {
-        return (
-            <div style={{backgroundColor: "#d4d4d4", color:"black"}}>
-                <button onClick={() => setPageState("pcs")}><h1 style={{fontSize:"50px", marginLeft:"50vh"}}>View PCS</h1></button>
-                <ul className={styles.pcitems}>
-                    <li>CPUs</li>
-                    <ul>
-                        {generateCpuParts(cpuParts)}
-                    </ul>
-                    <li>GPUs</li>
-                    <ul>
-                        {generateGpuParts(gpuParts)}
-                    </ul>
-                    <li>RAM</li>
-                    <ul>
-                        {generateRamParts(ramParts)}
-                    </ul>
-                    <li>Storage</li>
-                    <ul>
-                        {generateHarddriveParts(harddriveParts)}
-                    </ul>
-                    <li>PSU</li>
-                    <ul>
-                        {generatePsuParts(psuParts)}
-                    </ul>
-                    <li>Case</li>
-                    <ul>
-                        {generatePccaseParts(pccaseParts)}
-                    </ul>
-                    <li>Motherboard </li>
-                    <ul>
-                        {generateMotherboardParts(motherboardParts)}
-                    </ul> 
-                </ul>
-            </div>
-        );
     }
 
     // Find pc logic
@@ -475,7 +441,7 @@ export default function Admin() {
             return <p> No PCs found </p>
         }
 
-        const pcArray = pcs.data; // This is a 2d array of pcs, each pc has an array of its parts 
+        const pcArray = pcs.data; // This is a 2d array of pcs, each pc has an array of its parts
 
         if (pcArray === undefined) {
             return <p> No PCs found </p>
@@ -493,10 +459,11 @@ export default function Admin() {
 
         return pcArray.map((pc: any) => {
             return (
-                <div style={{backgroundColor: "d3d3d3"}}>   
+                <div style={{ backgroundColor: "white" }}>
                     <li className="pc-items">
                         <h1>{pc[0].model_name}</h1>
                         <ul>
+                            <li> ----------------------------</li>
                             <li>{pc[1].model_name}</li>
                             <li>{pc[2].model_name}</li>
                             <li>{pc[3].model_name}</li>
@@ -504,12 +471,13 @@ export default function Admin() {
                             <li>{pc[5].model_name}</li>
                             <li>{pc[6].model_name}</li>
                             <li>{pc[7].model_name}</li>
+                            <li> ----------------------------</li>
                         </ul>
 
                         <button onClick={() => {
 
                             const element = document.createElement("a");
-    
+
                             // Format the pc object into a string
                             let pcString = "";
                             pc.forEach((part: any) => {
@@ -628,19 +596,92 @@ export default function Admin() {
         });
     }
 
-    if (pageState === "pcs") {
-        return (
-            <div style={{backgroundColor: "#d4d4d4", color: "black"}}>
-                <button onClick={() => setPageState("parts")}><h1 style={{fontSize:"50px", marginLeft:"50vh"}}>View Parts</h1></button>
-                <ul>
-                    <li>PCs</li>
-                    <ul>
-                        {generatePcs(pcs)}
-                    </ul>
-                </ul>
+    // If on parts page return parts display (use the /getCpus, /getGpus, etc. endpoints and then display them iteratively in a ul) 
+    // If on pcs page return pcs display (use the /getPcs endpoint and then display them iteratively in a ul)
+
+
+    //EXPERIMENT
+    ///////////////////////////////////////////////////////////
+    const [selectedTab, setSelectedTab] = useState<"parts" | "pcs">("parts")
+    return (
+        <div className="container mx-auto px-4 py-8 whitebg">
+            <div className="flex justify-center space-x-4 mb-6">
+                <Button
+                    variant={selectedTab === "parts" ? "default" : "outline"}
+                    onClick={() => setSelectedTab("parts")}
+                    className="w-32"
+                >
+                    Parts
+                </Button>
+                <Button
+                    variant={selectedTab === "pcs" ? "default" : "outline"}
+                    onClick={() => setSelectedTab("pcs")}
+                    className="w-32"
+                >
+                    PCs
+                </Button>
             </div>
-        );
-    }
+            <Card>
+                <CardHeader>
+                    <CardTitle style={{ color: "black" }}>{selectedTab === "parts" ? "Computer Parts" : "Pre-built PCs"}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {selectedTab === "parts" ? (
+  
+                        <div style={{ backgroundColor: "white", color: "black" }}>
+                            <button onClick={() => setPageState("pcs")}></button>
+                            <ul className={styles.pcitems}>
+                                <li className={styles.sectitle}>CPUs</li>
+                                <ul>
+                                    {generateCpuParts(cpuParts)}  
+                                </ul>
+
+                                <li className={styles.sectitle}>GPUs</li>
+                                <ul>
+                                    {generateGpuParts(gpuParts)}
+                                </ul>
+                                <li className={styles.sectitle}>RAM</li>
+                                <ul>
+                                    {generateRamParts(ramParts)}
+                                </ul>
+                                <li className={styles.sectitle}>Storage</li>
+                                <ul>
+                                    {generateHarddriveParts(harddriveParts)}
+                                </ul>
+                                <li className={styles.sectitle}>PSU</li>
+                                <ul>
+                                    {generatePsuParts(psuParts)}
+                                </ul>
+                                <li className={styles.sectitle}>Case</li>
+                                <ul>
+                                    {generatePccaseParts(pccaseParts)}
+                                </ul>
+                                <li className={styles.sectitle}>Motherboard </li>
+                                <ul>
+                                    {generateMotherboardParts(motherboardParts)}
+                                </ul>
+                            </ul>
+                        </div>
+                    ) : (
+                        <div style={{ backgroundColor: "#d4d4d4", color: "black" }}>
+                            <button onClick={() => setPageState("parts")}></button>
+                            <ul>
+                                <li className={styles.sectitle}>PCs</li>
+                                <ul>
+                                    {generatePcs(pcs)}
+                                </ul>
+                            </ul>
+                        </div>
+                    )}
+                </CardContent>
+            </Card>
+        </div>
+    );
+
+    ///////////////////////////////////////////////////////////
+
+
+
 
     return (
         <>
