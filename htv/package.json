@@ -20,7 +20,8 @@
     "next-auth": "^4.24.8",
     "node": "^20.18.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-image-file-resizer": "^0.4.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

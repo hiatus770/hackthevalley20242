@@ -14,7 +14,7 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
 
-    const isDarkMode = false;
+    const isDarkMode = false;    
     // const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;  // TODO: this don't work for some reason
     return (
         <main style={{ backgroundColor: "white" }}>

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
             VALUES (${"'" + user_name + "'"}, ${"'" + address+"'"}, ${"'"+contact+"'"}, ${"'"+model_name+"'"}, ${"'"+speed+"'"}, ${"'"+capacity+"'"}, ${"'"+num_channels+"'"}, ${"'"+ddr+"'"}, ${"'"+description+"'"}, ${"'"+image+"'"}, ${"'"+rest+"'"}) 
             RETURNING *;
         `;
-        console.log("checkpoint 3")
+        console.log("checkpoint 3");
         // Map the extracted variables to the corresponding columns
         const values = [
             user_name, 

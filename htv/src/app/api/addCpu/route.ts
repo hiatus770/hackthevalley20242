@@ -7,15 +7,15 @@ export async function POST(request: Request) {
 
         const { 
             user_name, address, contact, model_name, socket_type, chipset, tdp, ddr, 
-            pcie, image, rest
+            pcie, description, image, rest
         } = await request.json();
 
         // SQL query to insert data into the CPU table
         const query = `
             INSERT INTO CPU 
             (user_name, address, contact, model_name, socket_type, chipset, tdp, ddr, 
-            pcie, image, rest)
-            VALUES (${"'" + user_name + "'"}, ${"'" + address+"'"}, ${"'"+contact+"'"}, ${"'"+model_name+"'"}, ${"'"+socket_type+"'"}, ${"'"+chipset+"'"}, ${"'"+tdp+"'"}, ${"'"+ddr+"'"}, ${"'"+pcie+"'"}, ${"'"+image+"'"}, ${"'"+rest+"'"}) 
+            pcie, description, image, rest)
+            VALUES (${"'" + user_name + "'"}, ${"'" + address+"'"}, ${"'"+contact+"'"}, ${"'"+model_name+"'"}, ${"'"+socket_type+"'"}, ${"'"+chipset+"'"}, ${"'"+tdp+"'"}, ${"'"+ddr+"'"}, ${"'"+pcie+"'"}, ${"'"+description+"'"}, ${"'"+image+"'"}, ${"'"+rest+"'"}) 
             RETURNING *;
         `;
         console.log("checkpoint 3")

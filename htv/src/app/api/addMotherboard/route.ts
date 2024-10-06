@@ -10,6 +10,9 @@ export async function POST(request: Request) {
             user_name, address, contact, model_name, socket_type, chipset, ddr, pcie, 
             form_factor, power_connect, description, image, rest
         } = await request.json();
+
+        console.log("JSON FROM THING " + request.json()); 
+
         console.log("checkpoint 2")
         // SQL query to insert data into the CPU table
         const query = `
