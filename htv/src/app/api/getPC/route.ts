@@ -68,6 +68,6 @@ export async function POST(request: Request) {
 
     console.log(builds.length);
     // Call the POST function and handle the response
-    return NextResponse.json(builds); // Return the deleted row if you used RETURNING
+    return NextResponse.json({data: builds}); // Return the deleted row if you used RETURNING
 }
 
