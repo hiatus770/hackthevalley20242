@@ -6,17 +6,17 @@ export async function POST (request: Request) {
 
     try {
         // Get the ID from the request URL
-        const { UserId, Specs, Reason, Budget } =  await request.json();
+        const { user_name, address, contact, specs, reason, budget } =  await request.json();
         //console.log(user_id, specs, reason, budget);
         
-        if (!UserId) {
-            return NextResponse.json({ success: false, message: 'ID is required' }, { status: 400 });
+        if (!user_name) {
+            return NextResponse.json({ success: false, message: 'Name is required' }, { status: 400 });
         }
 
         // SQL query to delete a row from the CPU table
         const query = `
-            INSERT INTO REQUESTS (user_id, specs, reason, budget)
-            VALUES (${UserId}, ${"'" + Specs + "'"}, ${"'" + Reason + "'"}, ${Budget});
+            INSERT INTO REQUESTS (user_name, address, contact, specs, reason, budget)
+            VALUES (${"'" + user_name+"'"}, ${"'"+address+"'"}, ${"'"+contact+"'"}, ${"'" + specs + "'"}, ${"'" + reason + "'"}, ${"'"+budget+"'"});
         `;
 
         console.log(query);
