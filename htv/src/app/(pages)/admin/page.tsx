@@ -2,6 +2,7 @@
 import { getSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import React from "react";
+import styles from "../../../styles/home.module.css";
 
 export default function Admin() {
 
@@ -430,7 +431,7 @@ export default function Admin() {
         return (
             <div style={{backgroundColor: "#d4d4d4", color:"black"}}>
                 <button onClick={() => setPageState("pcs")}><h1 style={{fontSize:"50px", marginLeft:"50vh"}}>View PCS</h1></button>
-                <ul className="pc-items">
+                <ul className={styles.pcitems}>
                     <li>CPUs</li>
                     <ul>
                         {generateCpuParts(cpuParts)}

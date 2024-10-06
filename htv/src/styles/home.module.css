@@ -105,7 +105,7 @@
     animation: bounce ease-in-out infinite;
 }
 
-.pc-items {
+.pcitems {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,12 +113,13 @@
     margin-top: 40px;
 }
 
-.pc-items li {
+.pcitems li {
+    color: black; 
     margin-bottom: 20px;
     font-family: 'inter', sans-serif;
 }
 
-.pc-items ul {
+.pcitems ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
