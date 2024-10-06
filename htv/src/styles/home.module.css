@@ -17,6 +17,7 @@
 
 /* Header Container Styles */
 .headerContainer {
+    padding-top: 40px;
     background-color: bg;
     display: flex;
     align-items: center;

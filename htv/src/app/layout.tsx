@@ -38,11 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ backgroundColor: "#d4d4d4" }}>
+    <html lang="en" style={{ backgroundColor: "white" }}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       // className={`${meditalic.variable} ${semibolditalic.variable} antialiased`}
-
       >
         {children}
       </body>
