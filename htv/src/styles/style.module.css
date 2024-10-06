@@ -176,3 +176,10 @@
   display: flex;
   margin: 0 auto;
 }
+
+.pcitemdiv li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}

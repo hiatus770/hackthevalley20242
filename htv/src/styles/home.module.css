@@ -104,3 +104,22 @@
     margin-right: 40px;
     animation: bounce ease-in-out infinite;
 }
+
+.pc-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.pc-items li {
+    margin-bottom: 20px;
+    font-family: 'inter', sans-serif;
+}
+
+.pc-items ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

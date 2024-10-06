@@ -120,6 +120,15 @@ export default function Admin() {
                     })
                 });
 
+            const pcs = await fetch("/api/getPC",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+
             const coolingPartsJson = await cooling.json();
             const cpuPartsJson = await cpu.json();
             const gpuPartsJson = await gpu.json();
@@ -128,6 +137,7 @@ export default function Admin() {
             const psuPartsJson = await psu.json();
             const motherboardPartsJson = await motherboard.json();
             const pccasePartsJson = await pccase.json();
+            const pcsJson = await pcs.json();
 
             console.log("CPU PARTS: ", JSON.stringify(cpuPartsJson));
 
@@ -139,6 +149,7 @@ export default function Admin() {
             setPsuParts(psuPartsJson);
             setMotherboardParts(motherboardPartsJson);
             setPccaseParts(pccasePartsJson);
+            setPcs(pcsJson);
         }
         getParts();
     }, []);
@@ -197,7 +208,7 @@ export default function Admin() {
         }
 
         return cpuParts.map((part: cpuPart) => (
-            <li key={part.model_name+part.address+part.tdp}>
+            <li key={part.model_name + part.address + part.tdp}>
                 <h3>{part.model_name}</h3>
                 <p>Socket Type: {part.socket_type}</p>
                 <p>Chipset: {part.chipset}</p>
@@ -225,7 +236,7 @@ export default function Admin() {
         image: string;
         rest: string;
     }
-    function generateGpuParts(gpuJson : any) {
+    function generateGpuParts(gpuJson: any) {
         const gpuParts = gpuJson.data;
         console.log("GPU PARTS: ", typeof (gpuParts));
         if (gpuParts === undefined) {
@@ -233,7 +244,7 @@ export default function Admin() {
         }
 
         return gpuParts.map((part: gpuPart) => (
-            <li key={part.model_name+part.address+part.psu}>
+            <li key={part.model_name + part.address + part.psu}>
                 <h3>{part.model_name}</h3>
                 <p>PCIe: {part.pcie}</p>
                 <p>PSU: {part.psu}</p>
@@ -267,7 +278,7 @@ export default function Admin() {
         }
 
         return harddriveParts.map((part: harddrivePart) => (
-            <li key={part.model_name+part.address+part.hd_interface}>
+            <li key={part.model_name + part.address + part.hd_interface}>
                 <h3>{part.model_name}</h3>
                 <p>HD Interface: {part.hd_interface}</p>
                 <p>Form Factor: {part.form_factor}</p>
@@ -294,7 +305,7 @@ export default function Admin() {
         image: string;
         rest: string;
     }
-    function generateMotherboardParts(motherboardJson : any) {
+    function generateMotherboardParts(motherboardJson: any) {
         const motherboardParts = motherboardJson.data;
         console.log("MOTHERBOARD PARTS: ", typeof (motherboardParts));
         if (motherboardParts === undefined) {
@@ -302,7 +313,7 @@ export default function Admin() {
         }
 
         return motherboardParts.map((part: motherboardPart) => (
-            <li key={part.model_name+part.address+part.power_connect}>
+            <li key={part.model_name + part.address + part.power_connect}>
                 <h3>{part.model_name}</h3>
                 <p>Socket Type: {part.socket_type}</p>
                 <p>Chipset: {part.chipset}</p>
@@ -327,7 +338,7 @@ export default function Admin() {
         image: string;
         rest: string;
     }
-    function generatePccaseParts(pccaseJson : any) {
+    function generatePccaseParts(pccaseJson: any) {
         const pccaseParts = pccaseJson.data;
         console.log("PCCASE PARTS: ", typeof (pccaseParts));
         if (pccaseParts === undefined) {
@@ -335,7 +346,7 @@ export default function Admin() {
         }
 
         return pccaseParts.map((part: pccasePart) => (
-            <li key={part.model_name+part.address}>
+            <li key={part.model_name + part.address}>
                 <h3>{part.model_name}</h3>
                 <p>Form Factor: {part.form_factor}</p>
                 <p>Contact: {part.contact}</p>
@@ -358,7 +369,7 @@ export default function Admin() {
         image: string;
         rest: string;
     }
-    function generatePsuParts(psuJson : any) {
+    function generatePsuParts(psuJson: any) {
         const psuParts = psuJson.data;
         console.log("PSU PARTS: ", typeof (psuParts));
         if (psuParts === undefined) {
@@ -366,7 +377,7 @@ export default function Admin() {
         }
 
         return psuParts.map((part: psuPart) => (
-            <li key={part.model_name+part.address+part.wattage}>
+            <li key={part.model_name + part.address + part.wattage}>
                 <h3>{part.model_name}</h3>
                 <p>Wattage: {part.wattage}</p>
                 <p>Efficiency: {part.efficiency}</p>
@@ -378,7 +389,7 @@ export default function Admin() {
             </li>
         ));
     }
-  
+
     interface ramPart {
         user_name: string;
         address: string;
@@ -392,7 +403,7 @@ export default function Admin() {
         image: string;
         rest: string;
     }
-    function generateRamParts(ramJson : any) {
+    function generateRamParts(ramJson: any) {
         const ramParts = ramJson.data;
         console.log("RAM PARTS: ", typeof (ramParts));
         if (ramParts === undefined) {
@@ -400,7 +411,7 @@ export default function Admin() {
         }
 
         return ramParts.map((part: ramPart) => (
-            <li key={part.model_name+part.address+part.speed}>
+            <li key={part.model_name + part.address + part.speed}>
                 <h3>{part.model_name}</h3>
                 <p>Speed: {part.speed}</p>
                 <p>DDR: {part.ddr}</p>
@@ -417,9 +428,9 @@ export default function Admin() {
     // If on pcs page return pcs display (use the /getPcs endpoint and then display them iteratively in a ul)
     if (pageState === "parts") {
         return (
-            <>
-                <button onClick={() => setPageState("pcs")}>View PCs</button>
-                <ul>
+            <div style={{backgroundColor: "#d4d4d4", color:"black"}}>
+                <button onClick={() => setPageState("pcs")}><h1 style={{fontSize:"50px", marginLeft:"50vh"}}>View PCS</h1></button>
+                <ul className="pc-items">
                     <li>CPUs</li>
                     <ul>
                         {generateCpuParts(cpuParts)}
@@ -445,7 +456,161 @@ export default function Admin() {
                         {generatePccaseParts(pccaseParts)}
                     </ul>
                 </ul>
-            </>
+            </div>
+        );
+    }
+
+    // Find pc logic
+    function generatePcs(pcs: any) {
+
+        // display the json
+        console.log("PCS: ", JSON.stringify(pcs));
+
+        if (pcs === undefined) {
+            return <p> No PCs found </p>
+        }
+
+        const pcArray = pcs.data; // This is a 2d array of pcs, each pc has an array of its parts 
+
+        if (pcArray === undefined) {
+            return <p> No PCs found </p>
+        }
+
+        pcArray.forEach((pc: any) => {
+            console.log("PC ITEM: ", JSON.stringify(pc));
+            console.log("PC ITEM: ", pc[0].model_name);
+        });
+
+        // Put a buttom to build a pc 
+
+        return pcArray.map((pc: any) => {
+            return (
+                <div style={{backgroundColor: "d3d3d3"}}>   
+                    <li className="pc-items">
+                        <h1>{pc[0].model_name}</h1>
+                        <ul>
+                            <li>{pc[1].model_name}</li>
+                            <li>{pc[2].model_name}</li>
+                            <li>{pc[3].model_name}</li>
+                            <li>{pc[4].model_name}</li>
+                            <li>{pc[5].model_name}</li>
+                            <li>{pc[6].model_name}</li>
+                            <li>{pc[7].model_name}</li>
+                        </ul>
+
+                        <button onClick={() => {
+
+                            // Download a text file with the pc build stats 
+                            const element = document.createElement("a");
+                            const file = new Blob([JSON.stringify(pc)], { type: 'text/plain' });
+                            element.href = URL.createObjectURL(file);
+                            element.download = "pcInformation.txt";
+
+                            console.log("PC: ", pc);
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[0].id,
+                                    item: "cpu"
+                                })
+                            });
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[1].id,
+                                    item: "gpu"
+                                })
+                            });
+                            // mother
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[2].id,
+                                    item: "motherboard"
+                                })
+                            });
+                            // ram
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[3].id,
+                                    item: "ram"
+                                })
+                            });
+                            // ram
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[4].id,
+                                    item: "pccase"
+                                })
+                            });
+                            // pccase
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[5].id,
+                                    item: "cooling"
+                                })
+                            });
+                            // cooling
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[6].id,
+                                    item: "psu"
+                                })
+                            });
+                            // psu
+                            fetch("/api/deleteItemById", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id: pc[7].id,
+                                    item: "harddrive"
+                                })
+                            });
+                        }}>Build PC</button>
+                    </li>
+                </div>
+            );
+        });
+    }
+
+    if (pageState === "pcs") {
+        return (
+            <div style={{backgroundColor: "#d4d4d4", color: "black"}}>
+                <button onClick={() => setPageState("parts")}><h1 style={{fontSize:"50px", marginLeft:"50vh"}}>View Parts</h1></button>
+                <ul>
+                    <li>PCs</li>
+                    <ul>
+                        {generatePcs(pcs)}
+                    </ul>
+                </ul>
+            </div>
         );
     }
 

@@ -49,7 +49,7 @@ export async function POST(request: Request) {
                                             if (cpus[a]["chipset"] == mot[c]["chipset"]){
                                                 if ((cpus[a]["pcie"] == mot[c]["pcie"]) && (mot[c]["pcie"] == gpus[b]["pcie"])){
                                                     if (mot[c]["power_connect"] == psu[g]["power_connect"]){
-                                                        if (psu[g]["wattage"] >= cpus[a]["tdp"] + gpus[b]["psu"]){
+                                                        if (Number(psu[g]["wattage"]) >= Number(cpus[a]["tdp"]) + Number(gpus[b]["psu"])){
                                                             builds.push([cpus[a],gpus[b],mot[c],ram[d],pccase[e],cool[f],psu[g],hdd[h]]);
                                                         }
                                                     }
